@@ -1,0 +1,76 @@
+{
+  "name": "ts-chrome-extension-starter",
+  "version": "1.0.0",
+  "description": "Typescript Chrome Extension Starter",
+  "license": "MIT",
+  "scripts": {
+    "flush": "rm -rf ./dist/* && mkdir -p ./dist",
+    "webpack-prod": "webpack --config webpack/webpack.prod.js",
+    "webpack-dev": "webpack --config webpack/webpack.dev.js",
+    "build:prod": "npm run flush && npm run webpack-prod",
+    "build:dev": "npm run flush && npm run webpack-dev",
+    "start": "npm run webpack-dev --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.3",
+    "lint-staged": "^9.0.2",
+    "@types/chrome": "~0.0.47",
+    "@types/node": "^12.0.0",
+    "autoprefixer": "^9.6.1",
+    "css-loader": "^3.2.0",
+    "husky": "^3.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^1.18.2",
+    "sass-loader": "^7.3.1",
+    "style-loader": "^1.0.0",
+    "ts-loader": "~5.4.3",
+    "tslint": "^5.16.0",
+    "typescript": "3.4.5",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-extension-reloader": "^1.1.0",
+    "webpack-merge": "~4.1.4",
+    "webpack-notifier": "^1.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "tslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.scss": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.css": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.html": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

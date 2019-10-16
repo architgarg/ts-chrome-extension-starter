@@ -1,0 +1,7 @@
+# Images & assets.
+**/assets/**
+**/*.png
+**/*.svg
+**/*.jpg
+**/*.jpeg
+
