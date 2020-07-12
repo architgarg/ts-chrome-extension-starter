@@ -40,7 +40,15 @@ module.exports = (devMode) => ({
             }
           },
           "sass-loader", // Compiles Sass to CSS,
-          "postcss-loader"
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('autoprefixer'),
+              ]
+            }
+          }
         ]
       }
     ]
