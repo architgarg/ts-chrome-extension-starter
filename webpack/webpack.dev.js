@@ -1,6 +1,6 @@
 const merge                 = require('webpack-merge');
 const common                = require('./webpack.common.js');
-// const ExtensionReLoader     = require('webpack-extension-reloader');
+const ExtensionReLoader     = require('webpack-extension-reloader');
 
 module.exports = merge(common(true),
   {
@@ -10,13 +10,13 @@ module.exports = merge(common(true),
   },
   {
     plugins: [
-      // new ExtensionReLoader({
-      //   reloadPage: true,
-      //   entries: {
-      //     background: 'background',
-      //     contentScript: "content_script"
-      //   }
-      // })
-    ]
+      !process.env.NO_RELOAD && new ExtensionReLoader({
+        reloadPage: true,
+        entries: {
+          background: 'background',
+          contentScript: "content_script"
+        }
+      })
+    ].filter(Boolean)
   }
 );

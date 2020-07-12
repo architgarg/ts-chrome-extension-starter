@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npm run flush && npm run webpack-prod",
     "start": "npm run webpack-dev",
+    "start-nr": "NO_RELOAD=true npm run webpack-dev",
     "flush": "rm -rf ./dist/* && mkdir -p ./dist",
     "webpack-prod": "webpack --config webpack/webpack.prod.js",
     "webpack-dev": "webpack --config webpack/webpack.dev.js"
