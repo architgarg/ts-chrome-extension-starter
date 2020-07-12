@@ -1,6 +1,5 @@
 const { join, resolve } = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 
 module.exports = (devMode) => ({
@@ -68,9 +67,6 @@ module.exports = (devMode) => ({
         ignore: ["*.ts", "*.scss"]
       }
     ]),
-    new MiniCssExtractPlugin({
-      filename: "[name].css"
-    }),
     new WebpackNotifierPlugin({
       title: "Build Successful",
       contentImage: getSrcPath("assets/logo.png")
