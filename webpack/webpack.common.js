@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 
-module.exports = {
+module.exports = (devMode) => ({
   entry: {
     content_script: getSrcPath("content_script.ts"),
     background: getSrcPath("background.ts"),
@@ -22,11 +22,25 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /.css$|.scss$/,
+        test: /\.html$/i,
+        loader: 'html-loader?esModule',
+      },
+      {
+        include: /\.css$|\.scss$/,
+        exclude: /node_modules/,
         use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader",
+          "style-loader", // Creates style nodes from JS strings,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                auto: true,
+                localIdentName: devMode ? '[local]-[name]-[hash:base64:5]' : '[local]__[hash:base64:5]',
+              },
+            }
+          },
+          "sass-loader", // Compiles Sass to CSS,
           "postcss-loader"
         ]
       }
@@ -69,7 +83,7 @@ module.exports = {
     modules: false,
     assetsSort: '!size'
   }
-};
+});
 
 function getSrcPath(path) {
   return join(__dirname, "../src/" + path);

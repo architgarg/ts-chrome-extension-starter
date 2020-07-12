@@ -4,22 +4,22 @@
   "description": "Typescript Chrome Extension Starter",
   "license": "MIT",
   "scripts": {
+    "build": "npm run flush && npm run webpack-prod",
+    "start": "npm run webpack-dev",
     "flush": "rm -rf ./dist/* && mkdir -p ./dist",
     "webpack-prod": "webpack --config webpack/webpack.prod.js",
-    "webpack-dev": "webpack --config webpack/webpack.dev.js",
-    "build:prod": "npm run flush && npm run webpack-prod",
-    "build:dev": "npm run flush && npm run webpack-dev",
-    "start": "npm run webpack-dev --watch"
+    "webpack-dev": "webpack --config webpack/webpack.dev.js"
   },
   "dependencies": {},
   "devDependencies": {
-    "copy-webpack-plugin": "^5.0.3",
-    "lint-staged": "^9.0.2",
     "@types/chrome": "~0.0.47",
     "@types/node": "^12.0.0",
     "autoprefixer": "^9.6.1",
+    "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^3.2.0",
+    "html-loader": "^1.1.0",
     "husky": "^3.0.0",
+    "lint-staged": "^9.0.2",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",

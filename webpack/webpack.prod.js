@@ -3,7 +3,7 @@ const common = require("./webpack.common.js");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-module.exports = merge(common, {
+module.exports = merge(common(false), {
   mode: "production",
   optimization: {
     minimizer: [new UglifyJsPlugin(), new OptimizeCSSAssetsPlugin()]
